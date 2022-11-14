@@ -1,0 +1,24 @@
+// Get Fastly account returns "The schema representation of a Fastly account." response
+
+import com.datadog.api.client.ApiClient;
+import com.datadog.api.client.ApiException;
+import com.datadog.api.client.v2.api.FastlyIntegrationApi;
+import com.datadog.api.client.v2.model.FastlyAccountResponse;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = ApiClient.getDefaultApiClient();
+    FastlyIntegrationApi apiInstance = new FastlyIntegrationApi(defaultClient);
+
+    try {
+      FastlyAccountResponse result = apiInstance.getFastlyAccount("account_id");
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FastlyIntegrationApi#getFastlyAccount");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}

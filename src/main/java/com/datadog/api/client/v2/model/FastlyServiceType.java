@@ -4,7 +4,7 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
-package com.datadog.api.client.v1.model;
+package com.datadog.api.client.v2.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -19,16 +19,14 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-/** Assertion operator to apply. */
-@JsonSerialize(
-    using = SyntheticsAssertionXPathOperator.SyntheticsAssertionXPathOperatorSerializer.class)
-public class SyntheticsAssertionXPathOperator {
+/** The JSON:API type for this API. Should always be <code>fastly-services</code>. */
+@JsonSerialize(using = FastlyServiceType.FastlyServiceTypeSerializer.class)
+public class FastlyServiceType {
 
-  public static final SyntheticsAssertionXPathOperator VALIDATES_X_PATH =
-      new SyntheticsAssertionXPathOperator("validatesXPath");
+  public static final FastlyServiceType FASTLY_SERVICES = new FastlyServiceType("fastly-services");
 
   private static final Set<String> allowedValues =
-      new HashSet<String>(Arrays.asList("validatesXPath"));
+      new HashSet<String>(Arrays.asList("fastly-services"));
 
   private String value;
 
@@ -36,23 +34,21 @@ public class SyntheticsAssertionXPathOperator {
     return allowedValues.contains(this.value);
   }
 
-  SyntheticsAssertionXPathOperator(String value) {
+  FastlyServiceType(String value) {
     this.value = value;
   }
 
-  public static class SyntheticsAssertionXPathOperatorSerializer
-      extends StdSerializer<SyntheticsAssertionXPathOperator> {
-    public SyntheticsAssertionXPathOperatorSerializer(Class<SyntheticsAssertionXPathOperator> t) {
+  public static class FastlyServiceTypeSerializer extends StdSerializer<FastlyServiceType> {
+    public FastlyServiceTypeSerializer(Class<FastlyServiceType> t) {
       super(t);
     }
 
-    public SyntheticsAssertionXPathOperatorSerializer() {
+    public FastlyServiceTypeSerializer() {
       this(null);
     }
 
     @Override
-    public void serialize(
-        SyntheticsAssertionXPathOperator value, JsonGenerator jgen, SerializerProvider provider)
+    public void serialize(FastlyServiceType value, JsonGenerator jgen, SerializerProvider provider)
         throws IOException, JsonProcessingException {
       jgen.writeObject(value.value);
     }
@@ -67,7 +63,7 @@ public class SyntheticsAssertionXPathOperator {
     this.value = value;
   }
 
-  /** Return true if this SyntheticsAssertionXPathOperator object is equal to o. */
+  /** Return true if this FastlyServiceType object is equal to o. */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -76,7 +72,7 @@ public class SyntheticsAssertionXPathOperator {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return this.value.equals(((SyntheticsAssertionXPathOperator) o).value);
+    return this.value.equals(((FastlyServiceType) o).value);
   }
 
   @Override
@@ -90,7 +86,7 @@ public class SyntheticsAssertionXPathOperator {
   }
 
   @JsonCreator
-  public static SyntheticsAssertionXPathOperator fromValue(String value) {
-    return new SyntheticsAssertionXPathOperator(value);
+  public static FastlyServiceType fromValue(String value) {
+    return new FastlyServiceType(value);
   }
 }

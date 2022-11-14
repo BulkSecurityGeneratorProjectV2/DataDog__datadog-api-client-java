@@ -398,9 +398,8 @@ public class UsageMeteringApi {
 
   /**
    * Get estimated cost across multi-org and single root-org accounts. Estimated cost data is only
-   * available for the current month and previous month and is delayed by up to 72 hours from when
-   * it was incurred. To access historical costs prior to this, use the <code>/historical_cost
-   * </code> endpoint.
+   * available for the current month and previous month. To access historical costs prior to this,
+   * use the <code>/historical_cost</code> endpoint.
    *
    * @param parameters Optional parameters for the request.
    * @return ApiResponse&lt;CostByOrgResponse&gt;
@@ -929,7 +928,7 @@ public class UsageMeteringApi {
   }
 
   /**
-   * Get hourly usage by product family.
+   * Get hourly usage by product family
    *
    * @param filterTimestampStart Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh]
    *     for usage beginning at this hour. (required)
