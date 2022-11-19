@@ -16,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Annotation;
 import java.net.URI;
 import java.net.URLDecoder;
+import java.nio.file.Files;
 import java.util.*;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -548,7 +549,7 @@ public class TestClient implements Client {
         }
       } else if (genericType.getRawType().equals(File.class)) {
         try {
-          File tempFile = File.createTempFile("response", ".data");
+          File tempFile = Files.createTempFile("response", ".data").toFile();
           tempFile.deleteOnExit();
           FileWriter writer = new FileWriter(tempFile);
           writer.write(this.body);
